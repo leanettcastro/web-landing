@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Mis recomendaciones y guía</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Font Awesome for social + WhatsApp icon -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    />
+
+    <style>
+        /* ---------- Global styles ---------- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            /* Fondo claro, profesional */
+            background: linear-gradient(
+                    180deg,
+                    #fff7ed 0%,
+                    #ffedd5 40%,
+                    #ffe4e6 100%
+            );
+            color: #111827;
+            padding: 24px 12px;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 460px;
+            background: #ffffff; /* card blanca para contraste */
+            border-radius: 24px;
+            padding: 24px 18px 32px;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+            border: 1px solid #e5e7eb;
+        }
+
+        /* ---------- Header ---------- */
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 999px;
+            object-fit: cover;
+            border: 3px solid #f97316; /* borde naranja suave */
+            margin-bottom: 8px;
+        }
+
+        .name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #111827; /* texto oscuro */
+            margin-bottom: 4px;
+        }
+
+        .bio {
+            font-size: 0.9rem;
+            color: #4b5563; /* gris medio */
+            line-height: 1.4;
+        }
+
+        /* ---------- Link list ---------- */
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 18px 0 22px;
+        }
+
+        /* Botón general tipo Linktree */
+        .link-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background: #f9fafb;
+            border-radius: 16px;
+            padding: 10px 14px;
+            text-decoration: none;
+            color: #111827;
+            font-weight: 500;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+            transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+        }
+
+        .link-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.18);
+            background: #ffffff;
+        }
+
+        .link-card-text {
+            flex: 1;
+            text-align: center;
+            padding: 0 8px;
+            font-size: 0.95rem;
+        }
+
+        .link-card-icon-left,
+        .link-card-icon-right {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .link-card-icon-left {
+            background: rgba(34, 197, 94, 0.08); /* verde suave */
+            border: 1px solid rgba(34, 197, 94, 0.7);
+            color: #22c55e;
+        }
+
+        .link-card-icon-right {
+            background: rgba(250, 204, 21, 0.18); /* amarillo suave */
+            border: 1px solid rgba(250, 204, 21, 0.9);
+            color: #facc15;
+        }
+
+        /* Estilos especiales SOLO para el primer botón (grupo WhatsApp) */
+        .links .link-card:first-child {
+            background: linear-gradient(90deg, #22c55e, #16a34a);
+            color: #ffffff;
+            border: none;
+        }
+
+        .links .link-card:first-child .link-card-text {
+            font-weight: 600;
+        }
+
+        .links .link-card:first-child .link-card-icon-left {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            color: #ffffff;
+        }
+
+        .links .link-card:first-child .link-card-icon-right {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            color: #facc15;
+        }
+
+        /* ---------- Featured card (Gumroad guide) ---------- */
+        .featured-card {
+            display: flex;
+            flex-direction: column;
+            background: #f9fafb;
+            border-radius: 20px;
+            border: 2px solid #fb923c;
+            overflow: hidden;
+            text-decoration: none;
+            color: #111827;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.18);
+            transition: transform 0.12s ease, box-shadow 0.12s ease;
+        }
+
+        .featured-image-wrapper {
+            width: 100%;
+            background: #fff7ed;
+            overflow: hidden;
+        }
+
+        .featured-image {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .featured-content {
+            padding: 12px 16px 14px;
+            text-align: center;
+        }
+
+        .featured-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #9a3412;
+            background: #fed7aa;
+            padding: 4px 10px;
+            border-radius: 999px;
+            margin-bottom: 6px;
+        }
+
+        .featured-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #111827;
+        }
+
+        .featured-subtitle {
+            font-size: 0.9rem;
+            color: #4b5563;
+            margin-bottom: 8px;
+        }
+
+        .featured-note {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 35px rgba(15, 23, 42, 0.22);
+        }
+
+        /* ---------- Social icons ---------- */
+        .social-row {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 6px;
+            margin-bottom: 6px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #f97316; /* íconos naranja para hacer match con la guía */
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            background: #fff7ed;
+            transition: background 0.12s ease, transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+        }
+
+        .social-link i {
+            font-size: 1.1rem;
+        }
+
+        .social-link:hover {
+            background: #f97316;
+            color: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.25);
+            border-color: #f97316;
+        }
+
+        /* Visually hidden text for accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* ---------- Footer ---------- */
+        .footer {
+            text-align: center;
+            margin-top: 8px;
+            font-size: 0.7rem;
+            color: #6b7280; /* gris visible en fondo claro */
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- Header with avatar and short bio -->
+    <header class="header">
+        <img
+                class="avatar"
+                src="img/avatar.jpeg"
+                alt="Mi foto de perfil"
+        />
+        <h1 class="name">@liacastro2197</h1>
+        <p class="bio">
+            Reseñas, guías y recomendaciones de Amazon.
+            Haz clic en los enlaces para ver mis recursos y mi guía completa.
+        </p>
+    </header>
+
+    <!-- Links like Linktree buttons -->
+    <section class="links">
+        <!-- BOTÓN con WhatsApp a la izquierda y rayo amarillo a la derecha -->
+        <a
+                class="link-card"
+                href="https://www.amazon.com/tu-link-de-afiliado-1?tag=tu-tag-afiliado"
+                target="_blank"
+                rel="noopener noreferrer"
+        >
+            <span class="link-card-icon-left">
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+            </span>
+            <span class="link-card-text">
+                Acceso al MEJOR GRUPO de AMAZON RESEÑA
+            </span>
+            <span class="link-card-icon-right">
+                ⚡
+            </span>
+        </a>
+
+        <!-- Featured Gumroad guide card -->
+        <a
+                class="featured-card"
+                href="https://leanettcastro.gumroad.com/l/guia"
+                target="_blank"
+                rel="noopener noreferrer"
+        >
+            <div class="featured-image-wrapper">
+                <img
+                        class="featured-image"
+                        src="img/portrait.png"
+                        alt="Portada de mi guía"
+                />
+            </div>
+            <div class="featured-content">
+                <span class="featured-tag">La quiero!</span>
+                <h2 class="featured-title">Guía para ganar con reseñas de Amazon</h2>
+                <p class="featured-subtitle">
+                    Paso a paso para empezar desde cero, con ejemplos y plantillas prácticas.
+                </p>
+                <p class="featured-note">
+                    Pagas de forma segura en Gumroad. Acceso inmediato después del pago.
+                </p>
+            </div>
+        </a>
+    </section>
+
+    <!-- Social icons row -->
+    <div class="social-row">
+        <a
+                class="social-link"
+                href="https://www.tiktok.com/@liacastro2197?_r=1&_t=ZP-91SvNImyNJ9"
+                target="_blank"
+                rel="noopener noreferrer"
+        >
+            <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+            <span class="sr-only">TikTok</span>
+        </a>
+        <a
+                class="social-link"
+                href="https://www.instagram.com/lianethcastro_?igsh=MXg3bmYwbDB1aTcwMA%3D%3D&utm_source=qr"
+                target="_blank"
+                rel="noopener noreferrer"
+        >
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            <span class="sr-only">Instagram</span>
+        </a>
+        <a
+                class="social-link"
+                href="https://www.amazon.com/shop/fuegoenlia?ref_=cm_sw_r_apin_aipsfshop_GPE1BZDMHSX8RFJHVBD5&language=en-US"
+                target="_blank"
+                rel="noopener noreferrer"
+        >
+            <i class="fa-brands fa-amazon" aria-hidden="true"></i>
+            <span class="sr-only">Amazon</span>
+        </a>
+        <a
+                class="social-link"
+                href="https://www.facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+        >
+            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span>
+        </a>
+    </div>
+
+    <!-- Footer note -->
+    <footer class="footer">
+        Algunos enlaces son de afiliado.
+        Puedo recibir una pequeña comisión sin costo extra para ti.
+    </footer>
+</div>
+</body>
+</html>
